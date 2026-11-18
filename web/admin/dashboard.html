@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Executive Dashboard | GrandStay Admin</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../CSS/admin/slider.css">
+    <link rel="stylesheet" href="../CSS/admin/room.css">
+    <link rel="stylesheet" href="../CSS/admin/dashboard.css">
+    
+    <!-- Chart.js for interactive analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+    <!-- Backdrop for mobile sidebar toggle -->
+    <div class="side-backdrop" id="backdrop"></div>
+
+    <!-- Sidebar Slider Component -->
+    <aside class="side" id="sidebar">
+        <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none"
+            href="dashboard.html" aria-label="GRANDSTAY Admin Dashboard">
+            <div class="brand-monogram">
+                <span class="brand-monogram-text">GS</span>
+            </div>
+            <div class="d-flex flex-column">
+                <span class="brand-title">GRANDSTAY</span>
+                <span class="brand-subtitle">Hotel &amp; Residences &bull; Admin</span>
+            </div>
+        </a>
+
+        <div class="nav-container">
+            <nav class="nav" aria-label="Main Navigation">
+                <div class="nav-section-title">Core Management</div>
+
+                <a href="dashboard.html" class="on">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="room.jsp">
+                    <i class="bi bi-door-open"></i>
+                    <span>Rooms Inventory</span>
+                </a>
+
+                <a href="customers.html">
+                    <i class="bi bi-people"></i>
+                    <span>Customer Directory</span>
+                </a>
+
+                <div class="nav-section-title" style="margin-top: 14px;">Shortcuts &amp; Portal</div>
+
+                <a href="../guest/room.jsp" target="_blank">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                    <span>Guest View</span>
+                </a>
+
+                <a href="../login.jsp">
+                    <i class="bi bi-person-gear"></i>
+                    <span>Admin Profile</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="side-footer">
+            <div class="user-monogram"><span>AD</span></div>
+            <div class="user-info">
+                <span class="user-name">Administrator</span>
+                <span class="user-role-badge"><i class="bi bi-shield-check"></i> System Admin</span>
+            </div>
+            <a href="../logout" class="btn-sidebar-logout" title="Sign out">
+                <i class="bi bi-box-arrow-right"></i>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <div class="app-main">
+        <header class="navbar">
+            <div class="nav-left">
+                <button class="menu-btn" id="toggleBtn" type="button" aria-label="Open navigation sidebar">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+
+            <div class="nav-right">
+                <a href="../profile" class="nav-btn" title="Update Profile">
+                    <i class="bi bi-person-gear"></i>
+                    <span>Profile Settings</span>
+                </a>
+
+                <a href="../logout" class="nav-btn logout" title="Sign out">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <!-- Page Title Bar -->
+            <div class="top">
+                <div>
+                    <h1>Executive Dashboard</h1>
+                    <p>Live inventory status, hotel occupancy analytics, and recent reservation records.</p>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <a href="room.jsp" class="btn primary">
+                        <i class="bi bi-door-open"></i> Manage Inventory
+                    </a>
+                    <a href="customers.html" class="btn">
+                        <i class="bi bi-people"></i> Guests Directory
+                    </a>
+                </div>
+            </div>
+
+            <!-- 1. KPI SUMMARY CARDS -->
+            <div class="kpi-grid">
+                <!-- Total Rooms Card -->
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Total Rooms</span>
+                        <div class="kpi-icon"><i class="bi bi-building"></i></div>
+                    </div>
+                    <div class="kpi-value" id="kpiTotalRooms">12</div>
+                    <div class="kpi-footer">
+                        <span class="pill-sub avail" id="kpiAvailRooms"><i class="bi bi-check2-circle"></i> 9 Avail</span>
+                        <span class="pill-sub booked" id="kpiBookedRooms"><i class="bi bi-calendar-check"></i> 2 Booked</span>
+                        <span class="pill-sub maint" id="kpiMaintRooms"><i class="bi bi-tools"></i> 1 Maint</span>
+                    </div>
+                </div>
+
+                <!-- Bookings Card -->
+                <div class="kpi-card success">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Total Reservations</span>
+                        <div class="kpi-icon"><i class="bi bi-calendar-range"></i></div>
+                    </div>
+                    <div class="kpi-value" id="kpiTotalBookings">18</div>
+                    <div class="kpi-footer">
+                        <span class="pill-sub avail" id="kpiConfirmed"><i class="bi bi-check-lg"></i> 16 Confirmed</span>
+                        <span class="pill-sub maint" id="kpiCancelled"><i class="bi bi-x-lg"></i> 2 Cancelled</span>
+                    </div>
+                </div>
+
+                <!-- Total Revenue Card -->
+                <div class="kpi-card info">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Confirmed Revenue</span>
+                        <div class="kpi-icon"><i class="bi bi-cash-stack"></i></div>
+                    </div>
+                    <div class="kpi-value" id="kpiRevenue">$4,850.00</div>
+                    <div class="kpi-footer">
+                        <span><i class="bi bi-shield-check" style="color: var(--gs-success);"></i> Total from confirmed bookings</span>
+                    </div>
+                </div>
+
+                <!-- Occupancy Rate Card -->
+                <div class="kpi-card warning">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Occupancy Rate</span>
+                        <div class="kpi-icon"><i class="bi bi-pie-chart"></i></div>
+                    </div>
+                    <div class="kpi-value" id="kpiOccupancy">68.5%</div>
+                    <div class="kpi-footer">
+                        <span id="kpiOccupancyNote">Real-time room occupancy factor</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. QUICK ACTION SHORTCUTS -->
+            <div class="shortcuts-panel">
+                <div class="shortcuts-heading">
+                    <div class="kpi-icon" style="width: 38px; height: 38px; font-size: 18px;">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                    </div>
+                    <div>
+                        <h3>Quick Action Shortcuts</h3>
+                        <p>Streamline frequent operational workflows and inventory adjustments.</p>
+                    </div>
+                </div>
+                <div class="shortcuts-btns">
+                    <a href="room.jsp" class="action-btn gold">
+                        <i class="bi bi-plus-lg"></i> Add New Room
+                    </a>
+                    <a href="customers.html" class="action-btn">
+                        <i class="bi bi-person-lines-fill"></i> Guest Directory
+                    </a>
+                    <a href="../guest/room.jsp" target="_blank" class="action-btn">
+                        <i class="bi bi-eye"></i> Guest Portal View
+                    </a>
+                    <button type="button" onclick="window.print()" class="action-btn">
+                        <i class="bi bi-printer"></i> Print Summary
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3. ROOM OCCUPANCY & ANALYTICS CHARTS -->
+            <div class="charts-grid">
+                <!-- Room Occupancy Doughnut Chart -->
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <div class="chart-title-group">
+                            <h3>Room Occupancy Distribution</h3>
+                            <p>Real-time room status allocation across inventory.</p>
+                        </div>
+                    </div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="occupancyChart" data-avail="9" data-booked="2" data-maint="1"></canvas>
+                        <div class="occupancy-center-stat">
+                            <div class="occupancy-center-num" id="centerOccNum">68.5%</div>
+                            <div class="occupancy-center-label">Occupied</div>
+                        </div>
+                    </div>
+                    <div class="chart-legend-custom">
+                        <div class="legend-item">
+                            <div class="legend-color-dot" style="background: #10b981;"></div>
+                            <span id="legendAvail">Available (9)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color-dot" style="background: #c5a059;"></div>
+                            <span id="legendBooked">Booked (2)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color-dot" style="background: #ef4444;"></div>
+                            <span id="legendMaint">Maintenance (1)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room Types & Capacity Distribution -->
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <div class="chart-title-group">
+                            <h3>Inventory by Room Category</h3>
+                            <p>Active room distribution grouped by classification type.</p>
+                        </div>
+                    </div>
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="activityChart" data-breakdown='[{"name":"Deluxe Suite","count":5},{"name":"Executive King","count":4},{"name":"Presidential","count":2},{"name":"Standard Room","count":3}]'></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. RECENT BOOKINGS TABLE -->
+            <div class="table-panel">
+                <div class="table-panel-header">
+                    <div class="table-panel-title">
+                        <h3>Recent Reservation Records</h3>
+                        <p>Latest room bookings received across the property.</p>
+                    </div>
+                    <div class="table-controls">
+                        <div class="search-box">
+                            <i class="bi bi-search"></i>
+                            <input type="text" id="bookingSearch" placeholder="Search reference, guest, room..." autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Booking Ref</th>
+                                <th>Guest Details</th>
+                                <th>Room Assigned</th>
+                                <th>Stay Dates</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+                                <th style="text-align: right;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentBookingsBody">
+                            <tr>
+                                <td><span class="badge-ref">GS-8A39F</span></td>
+                                <td>
+                                    <div class="guest-cell">
+                                        <div class="guest-avatar">E</div>
+                                        <div>
+                                            <div style="font-weight: 600; color: #ffffff;">Emily Watson</div>
+                                            <div style="font-size: 11.5px; color: var(--text-muted);">emily.watson@example.com &bull; +1 (555) 234-5678</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="font-weight: 600;">Room 402</div>
+                                    <div style="font-size: 11.5px; color: var(--gold-light);">Imperial Penthouse (Presidential)</div>
+                                </td>
+                                <td>
+                                    <div>Nov 12, 2026 &rarr; Nov 16, 2026</div>
+                                    <div style="font-size: 11.5px; color: var(--text-muted);">4 night(s) &bull; 2 guest(s)</div>
+                                </td>
+                                <td><div style="font-weight: 700; color: #ffffff;">$1,800.00</div></td>
+                                <td><span class="status-badge confirmed"><i class="bi bi-check-circle-fill"></i> Confirmed</span></td>
+                                <td style="text-align: right;">
+                                    <button type="button" class="btn" style="padding: 6px 12px; font-size: 12px;"
+                                            data-ref="GS-8A39F" data-guest="Emily Watson" data-email="emily.watson@example.com"
+                                            data-phone="+1 (555) 234-5678" data-room="Room 402 - Imperial Penthouse"
+                                            data-roomtype="Presidential" data-in="2026-11-12" data-out="2026-11-16"
+                                            data-nights="4" data-count="2" data-price="1800.00" data-status="CONFIRMED"
+                                            onclick="openBookingDetails(this)">
+                                        <i class="bi bi-info-circle"></i> Details
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge-ref">GS-51C7E</span></td>
+                                <td>
+                                    <div class="guest-cell">
+                                        <div class="guest-avatar">A</div>
+                                        <div>
+                                            <div style="font-weight: 600; color: #ffffff;">Alexander Hayes</div>
+                                            <div style="font-size: 11.5px; color: var(--text-muted);">alex.hayes@business.com &bull; +1 (555) 987-6543</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="font-weight: 600;">Room 205</div>
+                                    <div style="font-size: 11.5px; color: var(--gold-light);">Executive King Suite (Executive)</div>
+                                </td>
+                                <td>
+                                    <div>Nov 08, 2026 &rarr; Nov 11, 2026</div>
+                                    <div style="font-size: 11.5px; color: var(--text-muted);">3 night(s) &bull; 1 guest(s)</div>
+                                </td>
+                                <td><div style="font-weight: 700; color: #ffffff;">$750.00</div></td>
+                                <td><span class="status-badge confirmed"><i class="bi bi-check-circle-fill"></i> Confirmed</span></td>
+                                <td style="text-align: right;">
+                                    <button type="button" class="btn" style="padding: 6px 12px; font-size: 12px;"
+                                            data-ref="GS-51C7E" data-guest="Alexander Hayes" data-email="alex.hayes@business.com"
+                                            data-phone="+1 (555) 987-6543" data-room="Room 205 - Executive King Suite"
+                                            data-roomtype="Executive" data-in="2026-11-08" data-out="2026-11-11"
+                                            data-nights="3" data-count="1" data-price="750.00" data-status="CONFIRMED"
+                                            onclick="openBookingDetails(this)">
+                                        <i class="bi bi-info-circle"></i> Details
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Booking Details Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div>
+                    <h3 style="font-size: 18px; margin: 0;">Reservation Details</h3>
+                    <p style="font-size: 12px; color: var(--text-muted); margin: 3px 0 0 0;" id="mbRef">—</p>
+                </div>
+                <button type="button" class="modal-close-btn" id="closeBookingModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                    <div>
+                        <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); display: block;">Guest Name</span>
+                        <b id="mbGuest" style="font-size: 14px; color: #ffffff;">—</b>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); display: block;">Contact Email</span>
+                        <span id="mbEmail" style="font-size: 13.5px; color: var(--text-main);">—</span>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); display: block;">Phone Number</span>
+                        <span id="mbPhone" style="font-size: 13.5px; color: var(--text-main);">—</span>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); display: block;">Total Paid</span>
+                        <b id="mbTotal" style="font-size: 16px; color: var(--gold-light);">—</b>
+                    </div>
+                </div>
+
+                <div style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 16px;">
+                    <div style="margin-bottom: 8px;">
+                        <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); display: block;">Assigned Room</span>
+                        <span id="mbRoom" style="font-weight: 600; color: #ffffff;">—</span>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); display: block;">Stay Dates</span>
+                        <span id="mbDates" style="color: var(--text-main);">—</span>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); display: block;">Guests Count</span>
+                        <span id="mbGuests" style="color: var(--text-main);">—</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" class="btn primary" onclick="document.getElementById('bookingModal').classList.remove('open')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../JS/admin/dashboard.js"></script>
+    <script>
+        // Optional live data sync if running on Servlet server
+        (function() {
+            fetch('../admin/dashboard?format=json')
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.totalRooms !== undefined) {
+                        document.getElementById('kpiTotalRooms').textContent = data.totalRooms;
+                        document.getElementById('kpiAvailRooms').innerHTML = '<i class="bi bi-check2-circle"></i> ' + data.availableRooms + ' Avail';
+                        document.getElementById('kpiBookedRooms').innerHTML = '<i class="bi bi-calendar-check"></i> ' + data.bookedRooms + ' Booked';
+                        document.getElementById('kpiTotalBookings').textContent = data.totalBookings;
+                        document.getElementById('kpiConfirmed').innerHTML = '<i class="bi bi-check-lg"></i> ' + data.confirmedBookings + ' Confirmed';
+                        document.getElementById('kpiCancelled').innerHTML = '<i class="bi bi-x-lg"></i> ' + data.cancelledBookings + ' Cancelled';
+                        document.getElementById('kpiRevenue').textContent = '$' + parseFloat(data.totalRevenue).toLocaleString(undefined, {minimumFractionDigits: 2});
+                        document.getElementById('kpiOccupancy').textContent = data.occupancyRate + '%';
+                        document.getElementById('centerOccNum').textContent = data.occupancyRate + '%';
+                        document.getElementById('legendAvail').textContent = 'Available (' + data.availableRooms + ')';
+                        document.getElementById('legendBooked').textContent = 'Booked (' + data.bookedRooms + ')';
+                        document.getElementById('legendMaint').textContent = 'Maintenance (' + data.maintenanceRooms + ')';
+                    }
+                }).catch(() => {/* fallback to mock values */});
+
+            // Mobile toggle sidebar
+            const sidebar = document.getElementById('sidebar');
+            const backdrop = document.getElementById('backdrop');
+            const toggleBtn = document.getElementById('toggleBtn');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                    sidebar.classList.toggle('open');
+                    backdrop.classList.toggle('active');
+                });
+            }
+            if (backdrop) {
+                backdrop.addEventListener('click', () => {
+                    sidebar.classList.remove('open');
+                    backdrop.classList.remove('active');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,317 @@
+/* GrandStay Admin Customers & Guest Directory Styling */
+
+/* Guest Directory Metrics Row */
+.customer-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-bottom: 26px;
+}
+
+.cstat-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: var(--transition-smooth);
+}
+
+.cstat-card:hover {
+    border-color: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.cstat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(197, 160, 89, 0.1);
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--gold-light);
+    flex-shrink: 0;
+}
+
+.cstat-icon.active {
+    background: rgba(16, 185, 129, 0.12);
+    border-color: rgba(16, 185, 129, 0.35);
+    color: #10b981;
+}
+
+.cstat-icon.blocked {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.35);
+    color: #fca5a5;
+}
+
+.cstat-info b {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    color: #ffffff;
+    line-height: 1;
+    display: block;
+}
+
+.cstat-info span {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* Directory Toolbar & Filtering */
+.directory-toolbar {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.filter-pills {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 600;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-darkest);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.filter-btn:hover {
+    color: var(--text-main);
+    border-color: var(--gold-light);
+}
+
+.filter-btn.active {
+    background: var(--gold-gradient);
+    color: #0d0e12;
+    border-color: var(--gold-primary);
+    font-weight: 700;
+}
+
+.filter-badge {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-size: 11px;
+}
+
+.filter-btn.active .filter-badge {
+    background: rgba(0, 0, 0, 0.2);
+    color: #0d0e12;
+}
+
+/* Customer Directory Table */
+.customer-table-container {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.guest-info-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.guest-avatar-monogram {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    color: var(--gold-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 13.5px;
+    flex-shrink: 0;
+}
+
+.guest-meta-name {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.guest-meta-email {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.guest-meta-phone {
+    font-size: 12px;
+    color: var(--gold-light);
+}
+
+/* Booking Count Badges & Profile Trigger */
+.booking-count-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(197, 160, 89, 0.1);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    color: var(--gold-light);
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.booking-count-badge:hover {
+    background: var(--gold-gradient);
+    color: #0d0e12;
+    border-color: transparent;
+    transform: translateY(-1px);
+}
+
+.booking-count-badge.zero {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--border-subtle);
+    color: var(--text-dim);
+}
+
+/* Account Status Badges */
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status-pill.active {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    color: #10b981;
+}
+
+.status-pill.blocked {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    color: #fca5a5;
+}
+
+.status-pill .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* Table Row Actions */
+.table-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.btn-action-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    font-size: 14px;
+}
+
+.btn-action-icon:hover {
+    border-color: var(--gold-light);
+    color: var(--gold-light);
+    background: rgba(197, 160, 89, 0.1);
+}
+
+.btn-action-icon.block:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.btn-action-icon.activate:hover {
+    border-color: #10b981;
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+}
+
+/* Customer Profile Modal */
+.cust-modal-box {
+    max-width: 650px;
+}
+
+.cust-profile-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.cust-profile-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--bg-darkest);
+    border: 2px solid var(--gold-primary);
+    color: var(--gold-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.history-subhead {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 16px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+

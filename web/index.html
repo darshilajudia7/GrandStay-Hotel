@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrandStay Hotel & Residences | The Pinnacle of Luxury</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Bootstrap 5.3 & Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- External Stylesheet -->
+<link rel="stylesheet" href="CSS/style.css">
+
+<body>
+
+    <!-- Top Luxury Header Bar -->
+    <div class="py-2 d-none d-lg-block border-bottom border-secondary border-opacity-10 bg-dark-base text-light text-opacity-75" style="font-size: 0.75rem;">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex gap-4">
+                <span><i class="fa-solid fa-location-dot text-gold me-1"></i> 540 Grand Avenue, Oceanfront Reserve</span>
+                <span><i class="fa-solid fa-phone text-gold me-1"></i> +1 (800) 845-GRAND</span>
+                <span><i class="fa-regular fa-clock text-gold me-1"></i> Concierge: 24/7 Available</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <span class="text-gold-light"><i class="fa-solid fa-award me-1"></i> Forbes Five-Star Global Hotel 2026</span>
+                <span class="text-secondary">|</span>
+                <a href="#guestReviews" class="text-light text-opacity-75 text-decoration-none hover-gold">Guest Reviews</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Bootstrap 5 Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-grandstay sticky-top py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <div class="d-flex justify-content-center align-items-center rounded-circle border border-gold" style="width: 42px; height: 42px; background: #12141a; border-color: var(--gs-gold-primary) !important;">
+                    <span class="font-serif fw-bold text-gold fs-5">GS</span>
+                </div>
+                <div class="d-flex flex-column">
+                    <span class="font-serif fw-bold text-white fs-4 tracking-wider lh-1">GRANDSTAY</span>
+                    <span class="text-gold letter-spacing-3 text-uppercase" style="font-size: 0.55rem;">Hotel & Residences</span>
+                </div>
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler border-0 shadow-none text-gold" type="button" data-bs-toggle="collapse" data-bs-target="#navbarGrandStayMenu" aria-controls="navbarGrandStayMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars fs-4"></i>
+            </button>
+
+            <!-- Nav Links -->
+            <div class="collapse navbar-collapse" id="navbarGrandStayMenu">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#hero">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experiences">Experiences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#guestReviews">Accolades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-2">
+                    <!-- Login Button -->
+                    <a href="login.jsp" class="btn btn-outline-gold px-3 py-2 rounded-pill btn-sm" id="btnLogin">
+                        <i class="fa-regular fa-user me-1"></i> Log In
+                    </a>
+
+                    <!-- Book Now Button -->
+                    <a href="register.jsp" class="btn btn-gold px-4 py-2 rounded-pill btn-sm" id="btnBookExperience">
+                        <i class="fa-regular fa-calendar-check me-1"></i> Book Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-container">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="container position-relative" style="z-index: 2;">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-9">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-4 border border-secondary border-opacity-25 bg-dark" style="background-color: rgba(18, 20, 26, 0.8) !important;">
+                        <i class="fa-solid fa-gem text-gold" style="font-size: 0.75rem;"></i>
+                        <span class="text-gold-light letter-spacing-2 text-uppercase fw-semibold" style="font-size: 0.65rem;">Unrivaled Oceanfront Haven</span>
+                        <i class="fa-solid fa-gem text-gold" style="font-size: 0.75rem;"></i>
+                    </div>
+
+                    <h1 class="font-serif display-3 fw-bold text-white mb-3">
+                        Where Pure Splendor Meets <br>
+                        <span class="gold-gradient-text fst-italic fw-normal">Timeless Solitude</span>
+                    </h1>
+
+                    <p class="lead text-light text-opacity-75 fw-light mx-auto mb-5 col-md-10" style="font-size: 1.05rem;">
+                        Immerse yourself in cliffside panoramic infinity views, personal 24-hour butler assistance, and three-star Michelin gastronomy tailored to discerning world travelers.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-5 bg-dark-base">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <span class="text-gold text-uppercase small fw-semibold">Discover GrandStay</span>
+                    <h2 class="font-serif display-5 fw-bold text-white mt-3">About GrandStay</h2>
+                    <p class="text-light text-opacity-75 fw-light mt-3">
+                        Experience timeless elegance, exceptional hospitality, and unforgettable moments at GrandStay Hotel & Residences.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <img
+                        src="Image/about_hotel.jpg"
+                        alt="GrandStay Hotel"
+                        class="img-fluid rounded-4 w-100"
+                        style="height: 420px; object-fit: cover;">
+                </div>
+
+                <div class="col-lg-6">
+                    <h3 class="font-serif display-6 fw-bold text-white mb-4">Where Luxury Meets Comfort</h3>
+                    <p class="text-light text-opacity-75 fw-light">
+                        At GrandStay Hotel & Residences, we believe that exceptional hospitality is about more than a place to stay. It is about creating experiences that guests remember.
+                    </p>
+                    <p class="text-light text-opacity-75 fw-light">
+                        Our commitment to refined interiors, thoughtful service, fine dining, and wellness creates a welcoming atmosphere for every guest.
+                    </p>
+                    <p class="text-light text-opacity-75 fw-light">
+                        Whether you are visiting for business or leisure, we aim to make every moment comfortable, personal, and memorable.
+                    </p>
+                    <a href="#experiences" class="btn btn-gold rounded-pill px-4 py-3 mt-3">
+                        Explore Experiences
+                    </a>
+                </div>
+            </div>
+
+            <div class="row g-4 mt-5">
+                <div class="col-md-4">
+                    <div class="glass-panel p-4 rounded-4 h-100 text-center">
+                        <i class="fa-solid fa-gem fs-2 text-gold mb-3"></i>
+                        <h4 class="font-serif text-white">Timeless Luxury</h4>
+                        <p class="text-light text-opacity-75 small fw-light mb-0">
+                            Elegant spaces and thoughtful details designed for exceptional comfort.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="glass-panel p-4 rounded-4 h-100 text-center">
+                        <i class="fa-solid fa-bell-concierge fs-2 text-gold mb-3"></i>
+                        <h4 class="font-serif text-white">Exceptional Service</h4>
+                        <p class="text-light text-opacity-75 small fw-light mb-0">
+                            Personalized attention that makes every guest feel welcome.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="glass-panel p-4 rounded-4 h-100 text-center">
+                        <i class="fa-solid fa-spa fs-2 text-gold mb-3"></i>
+                        <h4 class="font-serif text-white">Relax & Rejuvenate</h4>
+                        <p class="text-light text-opacity-75 small fw-light mb-0">
+                            Peaceful wellness experiences that help you relax and recharge.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curated Experiences & Dining Section -->
+    <section id="experiences" class="py-5 bg-dark-base">
+        <div class="container py-4">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
+                    <span class="badge badge-gold px-3 py-1 rounded-pill mb-2">Distinguished Lifestyle</span>
+                    <h2 class="font-serif display-5 fw-bold text-white">Curated Luxury & Privileges</h2>
+                </div>
+                <div class="col-lg-6 text-lg-end mt-3 mt-lg-0">
+                    <p class="text-light text-opacity-75 fw-light mb-0">
+                        From Michelin-starred gastronomy to deep rejuvenation rituals, every touchpoint honors our heritage of discreet distinction.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- Experience 1: Fine Dining -->
+                <div class="col-12 col-md-6 col-lg-3" id="dining">
+                    <div class="glass-panel p-4 rounded-4 h-100 glass-panel-hover d-flex flex-column text-center">
+                        <div class="d-inline-flex justify-content-center align-items-center rounded-circle border border-gold mx-auto mb-3" style="width: 65px; height: 65px; background: rgba(197, 160, 89, 0.1);">
+                            <i class="fa-solid fa-utensils fs-4 text-gold"></i>
+                        </div>
+                        <h4 class="font-serif text-white fs-5 fw-bold mb-2">Le Ciel (3-Star Michelin)</h4>
+                        <p class="text-light text-opacity-75 small fw-light mb-3">
+                            Modern French coastal gastronomy curated nightly by world-renowned executive chefs with sommelier-led grand cru cellars.
+                        </p>
+                        <span class="mt-auto text-gold small text-uppercase letter-spacing-1 fw-semibold">Gourmet Dining</span>
+                    </div>
+                </div>
+
+                <!-- Experience 2: Spa & Hammam -->
+                <div class="col-12 col-md-6 col-lg-3" id="wellness">
+                    <div class="glass-panel p-4 rounded-4 h-100 glass-panel-hover d-flex flex-column text-center">
+                        <div class="d-inline-flex justify-content-center align-items-center rounded-circle border border-gold mx-auto mb-3" style="width: 65px; height: 65px; background: rgba(197, 160, 89, 0.1);">
+                            <i class="fa-solid fa-spa fs-4 text-gold"></i>
+                        </div>
+                        <h4 class="font-serif text-white fs-5 fw-bold mb-2">Aurelia Thalasso Spa</h4>
+                        <p class="text-light text-opacity-75 small fw-light mb-3">
+                            Thermal hydrotherapy pools, authentic marble Turkish hammams, and organic seaweed revitalizing rituals.
+                        </p>
+                        <span class="mt-auto text-gold small text-uppercase letter-spacing-1 fw-semibold">Holistic Health</span>
+                    </div>
+                </div>
+
+                <!-- Experience 3: Rooftop Infinity Pool -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="glass-panel p-4 rounded-4 h-100 glass-panel-hover d-flex flex-column text-center">
+                        <div class="d-inline-flex justify-content-center align-items-center rounded-circle border border-gold mx-auto mb-3" style="width: 65px; height: 65px; background: rgba(197, 160, 89, 0.1);">
+                            <i class="fa-solid fa-water-ladder fs-4 text-gold"></i>
+                        </div>
+                        <h4 class="font-serif text-white fs-5 fw-bold mb-2">Rooftop Infinity Edge</h4>
+                        <p class="text-light text-opacity-75 small fw-light mb-3">
+                            Heated horizon pool with curtained cabanas, poolside caviar service, and sunset cocktail lounges.
+                        </p>
+                        <span class="mt-auto text-gold small text-uppercase letter-spacing-1 fw-semibold">Panoramic Oasis</span>
+                    </div>
+                </div>
+
+                <!-- Experience 4: Private Chauffeur & Yacht -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="glass-panel p-4 rounded-4 h-100 glass-panel-hover d-flex flex-column text-center">
+                        <div class="d-inline-flex justify-content-center align-items-center rounded-circle border border-gold mx-auto mb-3" style="width: 65px; height: 65px; background: rgba(197, 160, 89, 0.1);">
+                            <i class="fa-solid fa-ship fs-4 text-gold"></i>
+                        </div>
+                        <h4 class="font-serif text-white fs-5 fw-bold mb-2">Yacht & Chauffeur</h4>
+                        <p class="text-light text-opacity-75 small fw-light mb-3">
+                            80-foot private motor yachts for sunset charters and an in-house fleet of Rolls-Royce Phantoms at your service.
+                        </p>
+                        <span class="mt-auto text-gold small text-uppercase letter-spacing-1 fw-semibold">Private Mobility</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Guest Reviews & Accolades Section -->
+    <section id="guestReviews" class="py-5 bg-surface-1 border-top border-bottom border-secondary border-opacity-10">
+        <div class="container py-4">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <span class="badge badge-gold px-3 py-1 rounded-pill mb-2">Global Acclaim</span>
+                    <h2 class="font-serif display-5 fw-bold text-white">Honors & Guest Testimonials</h2>
+                    <div class="d-flex justify-content-center align-items-center gap-2 my-3">
+                        <span style="height: 1px; width: 45px; background: var(--gs-gold-primary);"></span>
+                        <i class="fa-solid fa-star text-gold" style="font-size: 0.75rem;"></i>
+                        <span style="height: 1px; width: 45px; background: var(--gs-gold-primary);"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bootstrap Carousel for Reviews -->
+            <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+                            <div class="col-md-9 col-lg-8">
+                                <div class="glass-panel p-5 rounded-4 text-center">
+                                    <div class="text-gold mb-3 fs-5">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <p class="font-serif fs-4 text-light fst-italic mb-4">
+                                        "GrandStay provides that rarest combination of genuine warmth and architectural grandeur. The ocean views are truly etched into our souls."
+                                    </p>
+                                    <h6 class="text-gold-light fw-bold text-uppercase letter-spacing-1 mb-1">Lady Victoria Kensington</h6>
+                                    <span class="text-light text-opacity-75 small">Stayed in October 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-md-9 col-lg-8">
+                                <div class="glass-panel p-5 rounded-4 text-center">
+                                    <div class="text-gold mb-3 fs-5">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <p class="font-serif fs-4 text-light fst-italic mb-4">
+                                        "From the discreet Rolls-Royce arrival to the private degustation table at Le Ciel, every detail was orchestrated with surgical precision and elegance."
+                                    </p>
+                                    <h6 class="text-gold-light fw-bold text-uppercase letter-spacing-1 mb-1">Marcus Vance</h6>
+                                    <span class="text-light text-opacity-75 small">Stayed in January 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-md-9 col-lg-8">
+                                <div class="glass-panel p-5 rounded-4 text-center">
+                                    <div class="text-gold mb-3 fs-5">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <p class="font-serif fs-4 text-light fst-italic mb-4">
+                                        "The Aurelia Thalasso Spa revitalized my mind completely. An absolute sanctuary far removed from urban clamor. We have already booked our return visit."
+                                    </p>
+                                    <h6 class="text-gold-light fw-bold text-uppercase letter-spacing-1 mb-1">Elena Rostova</h6>
+                                    <span class="text-light text-opacity-75 small">Stayed in February 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon rounded-circle p-3 glass-panel" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon rounded-circle p-3 glass-panel" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <div class="row row-cols-2 row-cols-md-4 g-3 text-center mt-5 pt-4 border-top border-secondary border-opacity-10">
+                <div class="col">
+                    <div class="p-3 text-light text-opacity-75">
+                        <i class="fa-solid fa-trophy fs-3 text-gold mb-2 d-block"></i>
+                        <span class="small fw-semibold text-light">Condé Nast Gold 2026</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3 text-light text-opacity-75">
+                        <i class="fa-solid fa-medal fs-3 text-gold mb-2 d-block"></i>
+                        <span class="small fw-semibold text-light">Forbes 5-Star Winner</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3 text-light text-opacity-75">
+                        <i class="fa-solid fa-certificate fs-3 text-gold mb-2 d-block"></i>
+                        <span class="small fw-semibold text-light">Michelin Guide Global</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3 text-light text-opacity-75">
+                        <i class="fa-solid fa-shield-cat fs-3 text-gold mb-2 d-block"></i>
+                        <span class="small fw-semibold text-light">World Luxury Hotel 2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="py-5 bg-dark-base">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <span class="text-gold text-uppercase small fw-semibold">Get In Touch</span>
+                    <h2 class="font-serif display-5 fw-bold text-white mt-3">Contact Us</h2>
+                    <p class="text-light text-opacity-75 fw-light mt-3">
+                        We are here to make your stay exceptional. Contact our team for reservations, enquiries, or assistance during your visit.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <h3 class="font-serif text-white mb-4">Get In Touch With Us</h3>
+
+                    <div class="d-flex mb-4">
+                        <i class="fa-solid fa-location-dot text-gold fs-4 me-3"></i>
+                        <div>
+                            <h6 class="text-white">Our Location</h6>
+                            <p class="text-light text-opacity-75 fw-light">540 Grand Avenue, Oceanfront Reserve</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-4">
+                        <i class="fa-solid fa-phone text-gold fs-4 me-3"></i>
+                        <div>
+                            <h6 class="text-white">Phone</h6>
+                            <p class="text-light text-opacity-75 fw-light">+1 (800) 845-GRAND</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-4">
+                        <i class="fa-solid fa-envelope text-gold fs-4 me-3"></i>
+                        <div>
+                            <h6 class="text-white">Email</h6>
+                            <p class="text-light text-opacity-75 fw-light">info@grandstay.example</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="glass-panel p-4 p-md-5 rounded-4">
+                        <h3 class="font-serif text-white mb-4">Send Us a Message</h3>
+                        <form onsubmit="event.preventDefault(); showToast('Message Received', 'Thank you! We will get back to you shortly.');">
+                            <div class="mb-3">
+                                <label for="contactName" class="form-label text-light">Full Name</label>
+                                <input type="text" id="contactName" class="form-control form-control-dark py-2" placeholder="Enter your name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="contactEmail" class="form-label text-light">Email Address</label>
+                                <input type="email" id="contactEmail" class="form-control form-control-dark py-2" placeholder="Enter your email" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="contactSubject" class="form-label text-light">Subject</label>
+                                <input type="text" id="contactSubject" class="form-control form-control-dark py-2" placeholder="Enter subject" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="contactMessage" class="form-label text-light">Message</label>
+                                <textarea id="contactMessage" class="form-control form-control-dark" rows="5" placeholder="Write your message..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-gold rounded-pill px-4 py-3">
+                                Send Message <i class="fa-solid fa-paper-plane ms-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-base pt-5 pb-4 border-top border-secondary border-opacity-10 text-light text-opacity-75">
+        <div class="container pb-4">
+            <div class="row g-4 justify-content-between">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <div class="d-flex justify-content-center align-items-center rounded-circle border border-gold" style="width: 38px; height: 38px; background: #12141a; border-color: var(--gs-gold-primary) !important;">
+                            <span class="font-serif fw-bold text-gold fs-6">GS</span>
+                        </div>
+                        <span class="font-serif fw-bold text-white fs-4">GRANDSTAY</span>
+                    </div>
+                    <p class="small fw-light mb-3 text-light text-opacity-50">
+                        GrandStay Hotel & Residences stands as an uncompromising icon of architectural excellence, tailored discretion, and restorative coastal solitude.
+                    </p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center text-gold border-secondary border-opacity-25" style="width: 36px; height: 36px;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center text-gold border-secondary border-opacity-25" style="width: 36px; height: 36px;"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center text-gold border-secondary border-opacity-25" style="width: 36px; height: 36px;"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center text-gold border-secondary border-opacity-25" style="width: 36px; height: 36px;"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <h6 class="text-white text-uppercase letter-spacing-1 small fw-bold mb-3">The Residence</h6>
+                    <ul class="list-unstyled small fw-light d-flex flex-column gap-2">
+                        <li><a href="#hero" class="text-decoration-none text-light text-opacity-75 hover-gold">About Heritage</a></li>
+                        <li><a href="#experiences" class="text-decoration-none text-light text-opacity-75 hover-gold">Yacht Excursions</a></li>
+                        <li><a href="#wellness" class="text-decoration-none text-light text-opacity-75 hover-gold">Thermal Spa</a></li>
+                        <li><a href="#dining" class="text-decoration-none text-light text-opacity-75 hover-gold">Private Dining</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <h6 class="text-white text-uppercase letter-spacing-1 small fw-bold mb-3">Privileges</h6>
+                    <ul class="list-unstyled small fw-light d-flex flex-column gap-2">
+                        <li><a href="#" class="text-decoration-none text-light text-opacity-75 hover-gold">Helipad Arrival</a></li>
+                        <li><a href="#" class="text-decoration-none text-light text-opacity-75 hover-gold">Chauffeur Service</a></li>
+                        <li><a href="#" class="text-decoration-none text-light text-opacity-75 hover-gold">Sommelier Cellar</a></li>
+                        <li><a href="#" class="text-decoration-none text-light text-opacity-75 hover-gold">Private Security</a></li>
+                        <li><a href="#" class="text-decoration-none text-light text-opacity-75 hover-gold">Bespoke Weddings</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4">
+                    <h6 class="text-white text-uppercase letter-spacing-1 small fw-bold mb-3">GrandStay Privé Society</h6>
+                    <p class="small fw-light text-light text-opacity-50 mb-3">
+                        Subscribe for discreet announcements, private wine auctions, and seasonal privileges.
+                    </p>
+                    <form onsubmit="handleNewsletterSubmit(event)" class="d-flex flex-column gap-2">
+                        <div class="input-group">
+                            <input type="email" id="newsletterEmail" class="form-control form-control-dark py-2 small" placeholder="Enter private email" required>
+                            <button class="btn btn-gold btn-sm px-3" type="submit">Join</button>
+                        </div>
+                        <span class="text-light text-opacity-75" style="font-size: 0.68rem;"><i class="fa-solid fa-lock text-gold me-1"></i> Your privacy is stringently protected under Swiss standards.</span>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row pt-4 mt-4 border-top border-secondary border-opacity-10 align-items-center">
+                <div class="col-md-6 text-center text-md-start small text-light text-opacity-75">
+                    &copy; 2026 GrandStay Hotel & Residences International. All rights reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0 small">
+                    <a href="#" class="text-light text-opacity-75 text-decoration-none me-3">Privacy Terms</a>
+                    <a href="#" class="text-light text-opacity-75 text-decoration-none me-3">Hospitality Charter</a>
+                    <a href="#" class="text-light text-opacity-75 text-decoration-none">Security Standards</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Booking Modal -->
+    <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-surface-1 border border-secondary border-opacity-25 text-light rounded-4 shadow-2xl">
+                <div class="modal-header border-bottom border-secondary border-opacity-10 px-4 pt-4 pb-3">
+                    <div>
+                        <span class="badge badge-gold mb-1"><i class="fa-solid fa-gem text-gold me-1"></i> Bespoke Reservation</span>
+                        <h4 class="modal-title font-serif text-white fw-bold" id="reservationModalLabel">Reserve Experience</h4>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-4">
+                    <form id="bookingModalForm" onsubmit="handleBookingSubmission(event)">
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label text-gold-light small text-uppercase fw-semibold mb-1">Full Name</label>
+                                <input type="text" class="form-control form-control-dark" placeholder="e.g. Lord Sterling" required>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="form-label text-gold-light small text-uppercase fw-semibold mb-1">Private Email</label>
+                                <input type="email" class="form-control form-control-dark" placeholder="sterling@residence.com" required>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="form-label text-gold-light small text-uppercase fw-semibold mb-1">Select Experience</label>
+                                <select id="modalSuiteSelect" class="form-select form-select-dark" onchange="updateBookingCost()">
+                                    <option value="The Sommelier Tasting Experience" data-price="350">Sommelier Tasting ($350 / session)</option>
+                                    <option value="Aurelia Thalasso Spa Ritual" data-price="420">Aurelia Thalasso Spa ($420 / day)</option>
+                                    <option value="Private Motor Yacht Excursion" data-price="1200">Private Yacht Charter ($1,200 / day)</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="form-label text-gold-light small text-uppercase fw-semibold mb-1">Number of Guests</label>
+                                <select class="form-select form-select-dark">
+                                    <option value="1">1 Guest</option>
+                                    <option value="2" selected>2 Guests</option>
+                                    <option value="3">3 Guests</option>
+                                    <option value="4+">4+ Guests</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="form-label text-gold-light small text-uppercase fw-semibold mb-1">Check-In Date</label>
+                                <input type="date" id="modalCheckIn" class="form-control form-control-dark" onchange="updateBookingCost()" required>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="form-label text-gold-light small text-uppercase fw-semibold mb-1">Check-Out Date</label>
+                                <input type="date" id="modalCheckOut" class="form-control form-control-dark" onchange="updateBookingCost()" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label text-gold-light small text-uppercase fw-semibold mb-1">Special Concierge Requests</label>
+                                <textarea class="form-control form-control-dark" rows="2" placeholder="Helipad shuttle, specific dietary requirements..."></textarea>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="glass-panel p-3 rounded-3 d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="d-block small text-light text-opacity-75">Estimated Duration: <strong id="stayNightsCount" class="text-white">3 Days</strong></span>
+                                        <span class="small text-gold-light"><i class="fa-solid fa-car-side me-1"></i> Complimentary Rolls-Royce transfer included</span>
+                                    </div>
+                                    <div class="text-end">
+                                        <span class="d-block text-light text-opacity-75 small">Estimated Total</span>
+                                        <span id="modalCalculatedPrice" class="font-serif fs-4 fw-bold text-gold">$1,050</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top border-secondary border-opacity-10">
+                            <button type="button" class="btn btn-outline-secondary btn-sm px-4 rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-gold btn-sm px-4 py-2 rounded-pill">Confirm Reservation</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Notification -->
+    <div id="customToast">
+        <div class="p-3 d-flex align-items-start gap-3">
+            <div class="rounded-circle d-flex align-items-center justify-content-center bg-dark p-2 border border-gold" style="min-width: 38px; height: 38px;">
+                <i class="fa-solid fa-check text-gold"></i>
+            </div>
+            <div class="flex-grow-1">
+                <h6 class="text-gold-light mb-1 small fw-bold text-uppercase letter-spacing-1" id="toastHeading">Reservation Requested</h6>
+                <p class="text-light text-opacity-75 small mb-0" id="toastMessage">Our chief concierge is finalizing your booking.</p>
+            </div>
+            <button type="button" class="btn-close btn-close-white btn-sm" onclick="hideToast()"></button>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- External JavaScript -->
+    <script src="JS/script.js"></script>
+</body>

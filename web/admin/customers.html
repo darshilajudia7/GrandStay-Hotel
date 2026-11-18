@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Customer Directory | GrandStay Admin</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../CSS/admin/slider.css">
+    <link rel="stylesheet" href="../CSS/admin/room.css">
+    <link rel="stylesheet" href="../CSS/admin/dashboard.css">
+    <link rel="stylesheet" href="../CSS/admin/customers.css">
+</head>
+<body data-context="..">
+
+    <!-- Backdrop for mobile sidebar toggle -->
+    <div class="side-backdrop" id="backdrop"></div>
+
+    <!-- Sidebar Slider Component -->
+    <aside class="side" id="sidebar">
+        <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none"
+            href="dashboard.html" aria-label="GRANDSTAY Admin Dashboard">
+            <div class="brand-monogram">
+                <span class="brand-monogram-text">GS</span>
+            </div>
+            <div class="d-flex flex-column">
+                <span class="brand-title">GRANDSTAY</span>
+                <span class="brand-subtitle">Hotel &amp; Residences &bull; Admin</span>
+            </div>
+        </a>
+
+        <div class="nav-container">
+            <nav class="nav" aria-label="Main Navigation">
+                <div class="nav-section-title">Core Management</div>
+
+                <a href="dashboard.html">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="room.jsp">
+                    <i class="bi bi-door-open"></i>
+                    <span>Rooms Inventory</span>
+                </a>
+
+                <a href="customers.html" class="on">
+                    <i class="bi bi-people"></i>
+                    <span>Customer Directory</span>
+                </a>
+
+                <div class="nav-section-title" style="margin-top: 14px;">Shortcuts &amp; Portal</div>
+
+                <a href="../guest/room.jsp" target="_blank">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                    <span>Guest View</span>
+                </a>
+
+                <a href="../login.jsp">
+                    <i class="bi bi-person-gear"></i>
+                    <span>Admin Profile</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="side-footer">
+            <div class="user-monogram"><span>AD</span></div>
+            <div class="user-info">
+                <span class="user-name">Administrator</span>
+                <span class="user-role-badge"><i class="bi bi-shield-check"></i> System Admin</span>
+            </div>
+            <a href="../logout" class="btn-sidebar-logout" title="Sign out">
+                <i class="bi bi-box-arrow-right"></i>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <div class="app-main">
+        <header class="navbar">
+            <div class="nav-left">
+                <button class="menu-btn" id="toggleBtn" type="button" aria-label="Open navigation sidebar">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+
+            <div class="nav-right">
+                <a href="../profile" class="nav-btn" title="Update Profile">
+                    <i class="bi bi-person-gear"></i>
+                    <span>Profile Settings</span>
+                </a>
+
+                <a href="../logout" class="nav-btn logout" title="Sign out">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <!-- Page Title Bar -->
+            <div class="top">
+                <div>
+                    <h1>Registered Guest Directory</h1>
+                    <p>Manage customer profiles, verify reservation records, and configure account access status.</p>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <a href="dashboard.html" class="btn">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
+                    <a href="room.jsp" class="btn primary">
+                        <i class="bi bi-door-open"></i> Manage Inventory
+                    </a>
+                </div>
+            </div>
+
+            <!-- Metrics Summary Row -->
+            <div class="customer-stats-grid">
+                <div class="cstat-card">
+                    <div class="cstat-icon"><i class="bi bi-people-fill"></i></div>
+                    <div class="cstat-info">
+                        <b id="totCount">4</b>
+                        <span>Total Registered</span>
+                    </div>
+                </div>
+
+                <div class="cstat-card">
+                    <div class="cstat-icon active"><i class="bi bi-person-check-fill"></i></div>
+                    <div class="cstat-info">
+                        <b id="actCount">3</b>
+                        <span>Active Accounts</span>
+                    </div>
+                </div>
+
+                <div class="cstat-card">
+                    <div class="cstat-icon blocked"><i class="bi bi-person-x-fill"></i></div>
+                    <div class="cstat-info">
+                        <b id="blkCount">1</b>
+                        <span>Blocked Accounts</span>
+                    </div>
+                </div>
+
+                <div class="cstat-card">
+                    <div class="cstat-icon"><i class="bi bi-calendar2-heart-fill"></i></div>
+                    <div class="cstat-info">
+                        <b id="bkCount">3</b>
+                        <span>With Bookings</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Directory Toolbar: Search & Filter Tabs -->
+            <div class="directory-toolbar">
+                <div class="search-box" style="min-width: 300px; flex: 1; max-width: 440px;">
+                    <i class="bi bi-search"></i>
+                    <input type="text" id="customerSearch" placeholder="Search by name, email, or phone..." autocomplete="off">
+                </div>
+
+                <div class="filter-pills">
+                    <button type="button" class="filter-btn active" data-filter="all">
+                        All <span class="filter-badge" id="pillAll">4</span>
+                    </button>
+                    <button type="button" class="filter-btn" data-filter="active">
+                        <i class="bi bi-check-circle" style="color:#10b981;"></i> Active <span class="filter-badge" id="pillAct">3</span>
+                    </button>
+                    <button type="button" class="filter-btn" data-filter="blocked">
+                        <i class="bi bi-slash-circle" style="color:#ef4444;"></i> Blocked <span class="filter-badge" id="pillBlk">1</span>
+                    </button>
+                    <button type="button" class="filter-btn" data-filter="with-bookings">
+                        <i class="bi bi-bookmark-check" style="color:var(--gold-light);"></i> With Bookings <span class="filter-badge" id="pillBk">3</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Customer Directory Table -->
+            <div class="customer-table-container">
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Guest Info</th>
+                                <th>Contact Information</th>
+                                <th>Address / City</th>
+                                <th>Bookings</th>
+                                <th>Status</th>
+                                <th style="text-align: right;">Access Control</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customerTableBody">
+                            <tr data-id="1" data-name="Emily Watson" data-email="emily.watson@example.com" data-phone="+1 (555) 234-5678" data-status="Active" data-bookings="2">
+                                <td>
+                                    <div class="guest-info-block">
+                                        <div class="guest-avatar-monogram">E</div>
+                                        <div>
+                                            <div class="guest-meta-name">Emily Watson</div>
+                                            <div class="guest-meta-email">User #1</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="color: #ffffff;"><i class="bi bi-envelope" style="color: var(--text-muted); margin-right: 6px;"></i>emily.watson@example.com</div>
+                                    <div style="font-size: 12px; margin-top: 3px; color: var(--gold-light);"><i class="bi bi-telephone" style="color: var(--text-muted); margin-right: 6px;"></i>+1 (555) 234-5678</div>
+                                </td>
+                                <td>
+                                    <div style="font-size: 13px; color: var(--text-main);">742 Evergreen Terrace, Springfield</div>
+                                </td>
+                                <td>
+                                    <button type="button" class="booking-count-badge"
+                                            data-id="1" data-name="Emily Watson" data-email="emily.watson@example.com"
+                                            data-phone="+1 (555) 234-5678" data-address="742 Evergreen Terrace, Springfield"
+                                            data-status="Active" data-bookings="2" data-joined="Oct 14, 2026"
+                                            onclick="openCustomerProfile(this)">
+                                        <i class="bi bi-journal-bookmark-fill"></i> 2 Booking(s)
+                                    </button>
+                                </td>
+                                <td>
+                                    <span class="status-pill active"><span class="dot"></span> Active</span>
+                                </td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button type="button" class="btn-action-icon" title="View Guest Profile"
+                                                data-id="1" data-name="Emily Watson" data-email="emily.watson@example.com"
+                                                data-phone="+1 (555) 234-5678" data-address="742 Evergreen Terrace, Springfield"
+                                                data-status="Active" data-bookings="2" data-joined="Oct 14, 2026"
+                                                onclick="openCustomerProfile(this)">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button type="button" class="btn-action-icon block" title="Block Account"
+                                                onclick="toggleMockStatus(this, 'Blocked')">
+                                            <i class="bi bi-slash-circle"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-id="2" data-name="Alexander Hayes" data-email="alex.hayes@business.com" data-phone="+1 (555) 987-6543" data-status="Active" data-bookings="1">
+                                <td>
+                                    <div class="guest-info-block">
+                                        <div class="guest-avatar-monogram">A</div>
+                                        <div>
+                                            <div class="guest-meta-name">Alexander Hayes</div>
+                                            <div class="guest-meta-email">User #2</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="color: #ffffff;"><i class="bi bi-envelope" style="color: var(--text-muted); margin-right: 6px;"></i>alex.hayes@business.com</div>
+                                    <div style="font-size: 12px; margin-top: 3px; color: var(--gold-light);"><i class="bi bi-telephone" style="color: var(--text-muted); margin-right: 6px;"></i>+1 (555) 987-6543</div>
+                                </td>
+                                <td>
+                                    <div style="font-size: 13px; color: var(--text-main);">120 Wall Street, New York, NY</div>
+                                </td>
+                                <td>
+                                    <button type="button" class="booking-count-badge"
+                                            data-id="2" data-name="Alexander Hayes" data-email="alex.hayes@business.com"
+                                            data-phone="+1 (555) 987-6543" data-address="120 Wall Street, New York, NY"
+                                            data-status="Active" data-bookings="1" data-joined="Oct 20, 2026"
+                                            onclick="openCustomerProfile(this)">
+                                        <i class="bi bi-journal-bookmark-fill"></i> 1 Booking(s)
+                                    </button>
+                                </td>
+                                <td>
+                                    <span class="status-pill active"><span class="dot"></span> Active</span>
+                                </td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button type="button" class="btn-action-icon" title="View Guest Profile"
+                                                data-id="2" data-name="Alexander Hayes" data-email="alex.hayes@business.com"
+                                                data-phone="+1 (555) 987-6543" data-address="120 Wall Street, New York, NY"
+                                                data-status="Active" data-bookings="1" data-joined="Oct 20, 2026"
+                                                onclick="openCustomerProfile(this)">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button type="button" class="btn-action-icon block" title="Block Account"
+                                                onclick="toggleMockStatus(this, 'Blocked')">
+                                            <i class="bi bi-slash-circle"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-id="3" data-name="Sophia Rodriguez" data-email="sophia.r@techventures.io" data-phone="+1 (555) 443-8899" data-status="Blocked" data-bookings="0">
+                                <td>
+                                    <div class="guest-info-block">
+                                        <div class="guest-avatar-monogram">S</div>
+                                        <div>
+                                            <div class="guest-meta-name">Sophia Rodriguez</div>
+                                            <div class="guest-meta-email">User #3</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="color: #ffffff;"><i class="bi bi-envelope" style="color: var(--text-muted); margin-right: 6px;"></i>sophia.r@techventures.io</div>
+                                    <div style="font-size: 12px; margin-top: 3px; color: var(--gold-light);"><i class="bi bi-telephone" style="color: var(--text-muted); margin-right: 6px;"></i>+1 (555) 443-8899</div>
+                                </td>
+                                <td>
+                                    <div style="font-size: 13px; color: var(--text-main);">450 Mission Bay Blvd, San Francisco, CA</div>
+                                </td>
+                                <td>
+                                    <span class="booking-count-badge zero">0 Bookings</span>
+                                </td>
+                                <td>
+                                    <span class="status-pill blocked"><span class="dot"></span> Blocked</span>
+                                </td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button type="button" class="btn-action-icon" title="View Guest Profile"
+                                                data-id="3" data-name="Sophia Rodriguez" data-email="sophia.r@techventures.io"
+                                                data-phone="+1 (555) 443-8899" data-address="450 Mission Bay Blvd, San Francisco, CA"
+                                                data-status="Blocked" data-bookings="0" data-joined="Oct 28, 2026"
+                                                onclick="openCustomerProfile(this)">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button type="button" class="btn-action-icon activate" title="Activate Account"
+                                                onclick="toggleMockStatus(this, 'Active')">
+                                            <i class="bi bi-check-circle"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Customer Profile Modal -->
+    <div class="modal-overlay" id="customerProfileModal">
+        <div class="modal-box cust-modal-box">
+            <div class="modal-header">
+                <div>
+                    <h3 style="font-size: 18px; margin: 0;">Guest Profile &amp; Reservation History</h3>
+                    <p style="font-size: 12px; color: var(--text-muted); margin: 3px 0 0 0;">Comprehensive guest account overview</p>
+                </div>
+                <button type="button" class="modal-close-btn" id="closeCustModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cust-profile-head">
+                    <div class="cust-profile-avatar" id="cpAvatar">G</div>
+                    <div style="flex:1;">
+                        <h4 id="cpName" style="font-size: 18px; color: #ffffff; margin: 0;">Guest Name</h4>
+                        <div style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">
+                            Member since <span id="cpJoined" style="color: var(--gold-light);">Oct 2026</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span id="cpStatus" class="status-pill active">Active</span>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; background: var(--bg-surface-elevated); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                    <div>
+                        <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); display: block;">Email</span>
+                        <span id="cpEmail" style="font-size: 13px; color: var(--text-main);">—</span>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); display: block;">Phone Number</span>
+                        <span id="cpPhone" style="font-size: 13px; color: var(--text-main);">—</span>
+                    </div>
+                    <div style="grid-column: span 2;">
+                        <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); display: block;">Address</span>
+                        <span id="cpAddress" style="font-size: 13px; color: var(--text-main);">—</span>
+                    </div>
+                </div>
+
+                <div class="history-subhead">
+                    <i class="bi bi-clock-history" style="color: var(--gold-primary);"></i>
+                    <span>Reservation History (<span id="cpBookingsCount">0 Bookings</span>)</span>
+                </div>
+
+                <div class="table-responsive" style="max-height: 240px; overflow-y: auto; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);">
+                    <table class="custom-table" style="font-size: 12.5px;">
+                        <thead>
+                            <tr>
+                                <th>Ref #</th>
+                                <th>Room</th>
+                                <th>Dates</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cpBookingsHistory">
+                            <tr>
+                                <td><span class="badge-ref">GS-8A39F</span></td>
+                                <td><b>Room 402</b><br><small style="color:#c5a059;">Imperial Penthouse</small></td>
+                                <td>Nov 12 &rarr; Nov 16</td>
+                                <td><b>$1,800.00</b></td>
+                                <td><span class="status-badge confirmed">CONFIRMED</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+                    <button type="button" class="btn primary" onclick="document.getElementById('customerProfileModal').classList.remove('open')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../JS/admin/customers.js"></script>
+    <script>
+        function toggleMockStatus(btn, targetStatus) {
+            const tr = btn.closest('tr');
+            if (!tr) return;
+            const name = tr.dataset.name;
+            if (confirm('Change account status of ' + name + ' to ' + targetStatus + '?')) {
+                tr.dataset.status = targetStatus;
+                const pill = tr.querySelector('.status-pill');
+                if (pill) {
+                    pill.className = 'status-pill ' + targetStatus.toLowerCase();
+                    pill.innerHTML = '<span class="dot"></span> ' + targetStatus;
+                }
+                if (targetStatus === 'Blocked') {
+                    btn.className = 'btn-action-icon activate';
+                    btn.title = 'Activate Account';
+                    btn.innerHTML = '<i class="bi bi-check-circle"></i>';
+                    btn.onclick = () => toggleMockStatus(btn, 'Active');
+                } else {
+                    btn.className = 'btn-action-icon block';
+                    btn.title = 'Block Account';
+                    btn.innerHTML = '<i class="bi bi-slash-circle"></i>';
+                    btn.onclick = () => toggleMockStatus(btn, 'Blocked');
+                }
+            }
+        }
+
+        // Try live sync with API if running under Tomcat
+        (function() {
+            fetch('../admin/customers?format=json')
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.customers && data.customers.length > 0) {
+                        document.getElementById('totCount').textContent = data.total;
+                        document.getElementById('actCount').textContent = data.active;
+                        document.getElementById('blkCount').textContent = data.blocked;
+                        document.getElementById('bkCount').textContent = data.withBookings;
+                        document.getElementById('pillAll').textContent = data.total;
+                        document.getElementById('pillAct').textContent = data.active;
+                        document.getElementById('pillBlk').textContent = data.blocked;
+                        document.getElementById('pillBk').textContent = data.withBookings;
+
+                        let rowsHtml = '';
+                        data.customers.forEach(c => {
+                            const isBlocked = (c.status === 'Blocked');
+                            const initial = (c.fullName || 'G').charAt(0).toUpperCase();
+                            const bCount = c.bookingCount || 0;
+                            rowsHtml += '<tr data-id="' + c.id + '" data-name="' + c.fullName + '" data-email="' + c.email + '" data-phone="' + c.phone + '" data-status="' + c.status + '" data-bookings="' + bCount + '">' +
+                                '<td><div class="guest-info-block"><div class="guest-avatar-monogram">' + initial + '</div><div><div class="guest-meta-name">' + c.fullName + '</div><div class="guest-meta-email">User #' + c.id + '</div></div></div></td>' +
+                                '<td><div style="color:#fff;"><i class="bi bi-envelope" style="color:var(--text-muted); margin-right:6px;"></i>' + c.email + '</div><div style="font-size:12px; margin-top:3px; color:var(--gold-light);"><i class="bi bi-telephone" style="color:var(--text-muted); margin-right:6px;"></i>' + (c.phone || '—') + '</div></td>' +
+                                '<td><div style="font-size:13px; color:var(--text-main);">' + (c.address || '<span style="color:var(--text-dim);">Not Provided</span>') + '</div></td>' +
+                                '<td>' + (bCount > 0 ? '<button type="button" class="booking-count-badge" data-id="' + c.id + '" data-name="' + c.fullName + '" data-email="' + c.email + '" data-phone="' + c.phone + '" data-address="' + c.address + '" data-status="' + c.status + '" data-bookings="' + bCount + '" onclick="openCustomerProfile(this)"><i class="bi bi-journal-bookmark-fill"></i> ' + bCount + ' Booking(s)</button>' : '<span class="booking-count-badge zero">0 Bookings</span>') + '</td>' +
+                                '<td><span class="status-pill ' + c.status.toLowerCase() + '"><span class="dot"></span> ' + c.status + '</span></td>' +
+                                '<td><div class="table-actions"><button type="button" class="btn-action-icon" title="View Guest Profile" data-id="' + c.id + '" data-name="' + c.fullName + '" data-email="' + c.email + '" data-phone="' + c.phone + '" data-address="' + c.address + '" data-status="' + c.status + '" data-bookings="' + bCount + '" onclick="openCustomerProfile(this)"><i class="bi bi-eye"></i></button><button type="button" class="btn-action-icon ' + (isBlocked ? 'activate' : 'block') + '" title="' + (isBlocked ? 'Activate' : 'Block') + ' Account" onclick="toggleMockStatus(this, \'' + (isBlocked ? 'Active' : 'Blocked') + '\')"><i class="bi bi-' + (isBlocked ? 'check-circle' : 'slash-circle') + '"></i></button></div></td>' +
+                                '</tr>';
+                        });
+                        document.getElementById('customerTableBody').innerHTML = rowsHtml;
+                    }
+                }).catch(() => {});
+
+            // Mobile toggle sidebar
+            const sidebar = document.getElementById('sidebar');
+            const backdrop = document.getElementById('backdrop');
+            const toggleBtn = document.getElementById('toggleBtn');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                    sidebar.classList.toggle('open');
+                    backdrop.classList.toggle('active');
+                });
+            }
+            if (backdrop) {
+                backdrop.addEventListener('click', () => {
+                    sidebar.classList.remove('open');
+                    backdrop.classList.remove('active');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
+
